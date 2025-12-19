@@ -1,65 +1,152 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { RoleCard } from '@/components/role-card';
+import { usePresenter } from '@/components/presenter-provider';
+
+export default function HomePage() {
+  const { isPresenterMode } = usePresenter();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className={`${isPresenterMode ? 'py-12' : 'py-8'}`}>
+      {/* Hero Section */}
+      <section className="container mx-auto px-4 text-center mb-12">
+        <h1 className={`font-bold text-primary mb-4 ${isPresenterMode ? 'text-5xl md:text-6xl' : 'text-3xl md:text-4xl'}`}>
+          Friction by Design
+        </h1>
+        <p className={`text-muted-foreground max-w-3xl mx-auto mb-2 ${isPresenterMode ? 'text-2xl' : 'text-lg'}`}>
+          A Framework for Centering Learning in the Age of AI
+        </p>
+        <p className={`text-muted-foreground/70 max-w-2xl mx-auto ${isPresenterMode ? 'text-xl' : 'text-base'}`}>
+          From the Digital Fluency Project at WestEd
+        </p>
+      </section>
+
+      {/* Key Message */}
+      <section className="container mx-auto px-4 mb-12">
+        <div className={`bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl max-w-4xl mx-auto ${isPresenterMode ? 'p-10' : 'p-6 md:p-8'}`}>
+          <blockquote className={`text-center ${isPresenterMode ? 'text-2xl md:text-3xl' : 'text-lg md:text-xl'}`}>
+            <p className="text-foreground/90 leading-relaxed">
+              &ldquo;AI can scaffold or shortcut learning. The difference lies not in the tool,
+              but in the way we design learning around it.&rdquo;
+            </p>
+          </blockquote>
+        </div>
+      </section>
+
+      {/* Core Concept */}
+      <section className="container mx-auto px-4 mb-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className={`rounded-xl border-2 border-[var(--productive)] bg-[var(--productive-light)] ${isPresenterMode ? 'p-8' : 'p-6'}`}>
+              <h3 className={`font-semibold text-[var(--productive)] mb-2 ${isPresenterMode ? 'text-2xl' : 'text-lg'}`}>
+                Productive Friction
+              </h3>
+              <p className={`text-[var(--productive)]/80 ${isPresenterMode ? 'text-lg' : 'text-sm'}`}>
+                Drives learning forward. Struggle, revision, dialogue, and cognitive effort—
+                these are where growth happens.
+              </p>
+            </div>
+            <div className={`rounded-xl border-2 border-[var(--unproductive)] bg-[var(--unproductive-light)] ${isPresenterMode ? 'p-8' : 'p-6'}`}>
+              <h3 className={`font-semibold text-[var(--unproductive)] mb-2 ${isPresenterMode ? 'text-2xl' : 'text-lg'}`}>
+                Unproductive Friction
+              </h3>
+              <p className={`text-[var(--unproductive)]/80 ${isPresenterMode ? 'text-lg' : 'text-sm'}`}>
+                Disrupts learning. Busywork, confusing instructions, access barriers—
+                these get in the way without adding value.
+              </p>
+            </div>
+          </div>
+          <p className={`text-muted-foreground ${isPresenterMode ? 'text-xl' : 'text-base'}`}>
+            AI has the power to reduce both kinds of friction. This framework helps you use AI intentionally—
+            preserving the friction that fuels learning while eliminating what gets in the way.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Role Selection */}
+      <section className="container mx-auto px-4 mb-12">
+        <h2 className={`font-bold text-center mb-2 ${isPresenterMode ? 'text-3xl' : 'text-2xl'}`}>
+          Choose Your Path
+        </h2>
+        <p className={`text-muted-foreground text-center mb-8 ${isPresenterMode ? 'text-xl' : 'text-base'}`}>
+          Select your role to explore relevant scenarios and applications
+        </p>
+
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <RoleCard
+            role="admin"
+            title="Administrator"
+            description="Shape AI policy and implementation at scale"
+            icon="🏛️"
+            features={[
+              "Policy design frameworks",
+              "Implementation planning",
+              "Institutional use cases",
+              "Equity considerations"
+            ]}
+          />
+          <RoleCard
+            role="educator"
+            title="Educator"
+            description="Design learning experiences with AI intentionally"
+            icon="👩‍🏫"
+            features={[
+              "Assignment redesign examples",
+              "Classroom scenarios",
+              "Assessment strategies",
+              "Student guidance tools"
+            ]}
+          />
+          <RoleCard
+            role="student"
+            title="Student"
+            description="Understand when AI helps and when it shortcuts"
+            icon="📚"
+            features={[
+              "Self-reflection prompts",
+              "Learning ownership",
+              "Ethical AI use",
+              "Study strategies"
+            ]}
+          />
         </div>
-      </main>
+      </section>
+
+      {/* Quick Links */}
+      <section className="container mx-auto px-4">
+        <div className="flex flex-wrap justify-center gap-4">
+          <Link href="/framework">
+            <Button size={isPresenterMode ? 'lg' : 'default'} className={isPresenterMode ? 'text-lg px-8' : ''}>
+              Explore the Framework
+            </Button>
+          </Link>
+          <Link href="/scenarios">
+            <Button variant="outline" size={isPresenterMode ? 'lg' : 'default'} className={isPresenterMode ? 'text-lg px-8' : ''}>
+              Browse Scenarios
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="container mx-auto px-4 mt-16 pt-8 border-t">
+        <div className="text-center text-sm text-muted-foreground">
+          <p>
+            The Friction by Design Framework is a product of the{' '}
+            <a
+              href="https://digitalfluency.wested.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              Digital Fluency project at WestEd
+            </a>
+          </p>
+          <p className="mt-2">© 2025 WestEd. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 }
